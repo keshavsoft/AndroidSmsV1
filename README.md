@@ -127,3 +127,7 @@ topBar no crash
 1.1.8
 
 topBar nice
+
+1.1.9
+
+now working on mainactivity modular
