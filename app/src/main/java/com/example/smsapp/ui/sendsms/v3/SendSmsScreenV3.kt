@@ -26,15 +26,15 @@ import com.example.smsapp.viewmodel.SmsViewModel
 @Composable
 fun SendSmsScreenV3(
     viewModel: SmsViewModel = viewModel(),
-    openDrawer: () -> Unit
+    openDrawer: () -> Unit,
+    title: String = "Send SMS V3"
 ) {
     val state by viewModel.uiState.collectAsState()
-    val commonHeadLabel="Send SMS V3"
 
     Scaffold(
         topBar = {
             AppTopBar(
-                title = commonHeadLabel,
+                title,
                 showBack = false,
                 onMenuClick = openDrawer
             )
@@ -63,14 +63,15 @@ fun SendSmsScreenV3(
 
             val sending by remember { derivedStateOf { state.isSending } }
 
+            val success = SendSmsFeedback(state.status)
+
             SendSmsButton(
-                sending ,
+                sending = sending,
+                success = success,
                 onSendClick = viewModel::sendSms
             )
 
             Spacer(modifier = Modifier.height(16.dp))
-
-            SendSmsFeedback(state.status)
         }
     }
 }

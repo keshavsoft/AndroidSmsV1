@@ -21,10 +21,11 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun SendSmsButton(
     sending: Boolean,
+    success: Boolean,
+    inButtonText:  String ="Send Message",
     onSendClick: () -> Unit
 )
 {
-    val CommonButtonText="Send Message"
     val interaction = remember { MutableInteractionSource() }
     val pressed by interaction.collectIsPressedAsState()
 
@@ -42,14 +43,16 @@ fun SendSmsButton(
             .scale(scale),
         shape = RoundedCornerShape(24.dp)
     ) {
-        AnimatedContent(targetState = sending, label = "") { loading ->
-            if (loading) {
-                CircularProgressIndicator(
+        AnimatedContent(targetState = Pair(sending, success), label = "") { (loading, done) ->
+            when {
+                loading -> CircularProgressIndicator(
                     strokeWidth = 2.dp,
                     modifier = Modifier.size(20.dp)
                 )
-            } else {
-                Text(CommonButtonText)
+
+                done -> Text("Sent ✓")
+
+                else -> Text(inButtonText)
             }
         }
     }

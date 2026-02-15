@@ -10,7 +10,7 @@ import androidx.compose.runtime.setValue
 @Composable
 fun SendSmsFeedback(
     status: String?
-)
+): Boolean
 {
     var scatter by remember { mutableStateOf(false) }
 
@@ -32,4 +32,6 @@ fun SendSmsFeedback(
             color = androidx.compose.material3.MaterialTheme.colorScheme.primary
         )
     }
+
+    return scatter
 }
