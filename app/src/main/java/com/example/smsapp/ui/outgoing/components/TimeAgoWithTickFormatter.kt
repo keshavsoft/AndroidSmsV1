@@ -3,7 +3,7 @@ package com.example.smsapp.ui.outgoing.components
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun formatTimeAgo(dateString: String): String {
+fun formatTimeAgoWithTick(dateString: String, tick: Int): String {
 
     val formats = listOf(
         "dd/MM/yyyy HH:mm:ss",

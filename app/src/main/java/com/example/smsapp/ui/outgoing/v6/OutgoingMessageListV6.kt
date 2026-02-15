@@ -1,20 +1,24 @@
-package com.example.smsapp.ui.outgoing.v5
+package com.example.smsapp.ui.outgoing.v6
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import com.example.smsapp.data.SmsMessage
+import com.example.smsapp.ui.outgoing.components.formatTimeAgo
+import com.example.smsapp.ui.outgoing.components.formatTimeAgoWithTick
 
 @Composable
-fun OutgoingMessageListV5(
+fun OutgoingMessageListV6(
     messages: List<SmsMessage>,
+    tick: Int,
     onItemClick: (SmsMessage) -> Unit
-) {
+)
+{
     LazyColumn {
         items(messages) { sms ->
-            OutgoingMessageItemV5(
+            OutgoingMessageItemV6(
                 sms = sms,
-                timeAgo = formatTimeAgo(sms.date),
+                timeAgo = formatTimeAgoWithTick(sms.date, tick),
                 onClick = onItemClick
             )
         }

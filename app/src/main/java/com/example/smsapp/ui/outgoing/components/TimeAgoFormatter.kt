@@ -1,4 +1,4 @@
-package com.example.smsapp.ui.outgoing.v5
+package com.example.smsapp.ui.outgoing.components
 
 import java.text.SimpleDateFormat
 import java.util.*

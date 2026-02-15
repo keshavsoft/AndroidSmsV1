@@ -4,6 +4,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import com.example.smsapp.data.SmsMessage
+import com.example.smsapp.ui.outgoing.components.formatTimeAgo
 
 @Composable
 fun OutgoingMessageListV5(

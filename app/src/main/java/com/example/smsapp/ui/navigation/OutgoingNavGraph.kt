@@ -12,6 +12,7 @@ import com.example.smsapp.ui.outgoing.v2.OutgoingScreenV2
 import com.example.smsapp.ui.outgoing.v3.OutgoingScreenV3
 import com.example.smsapp.ui.outgoing.v4.OutgoingScreenV4
 import com.example.smsapp.ui.outgoing.v5.OutgoingScreenV5
+import com.example.smsapp.ui.outgoing.v6.OutgoingScreenV6
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun NavGraphBuilder.outgoingGraph(
@@ -52,6 +53,17 @@ fun NavGraphBuilder.outgoingGraph(
 
     composable(AppScreen.OutgoingV5.route) {
         OutgoingScreenV5(
+            openDrawer = openDrawer,
+            navigateToSend = { phone, msg ->
+                navController.navigate(
+                    AppScreen.SendV3.route + "?phone=$phone&msg=$msg"
+                )
+            }
+        )
+    }
+
+    composable(AppScreen.OutgoingV6.route) {
+        OutgoingScreenV6(
             openDrawer = openDrawer,
             navigateToSend = { phone, msg ->
                 navController.navigate(
