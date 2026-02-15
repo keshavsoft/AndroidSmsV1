@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.smsapp.AppScreen
 import com.example.smsapp.ui.sendsms.v1.SendSmsScreenV1
 import com.example.smsapp.ui.inbox.v1.InboxScreenV1
@@ -37,8 +38,22 @@ fun AppNavHost(
             SendSmsScreenV2(openDrawer = openDrawer)
         }
 
-        composable(AppScreen.SendV3.route) {
-            SendSmsScreenV3(openDrawer = openDrawer)
+        composable(
+            route = AppScreen.SendV3.route + "?phone={phone}&msg={msg}",
+            arguments = listOf(
+                navArgument("phone") { defaultValue = "" },
+                navArgument("msg") { defaultValue = "" }
+            )
+        ) { backStack ->
+
+            val phone = backStack.arguments?.getString("phone") ?: ""
+            val msg = backStack.arguments?.getString("msg") ?: ""
+
+            SendSmsScreenV3(
+                openDrawer = openDrawer,
+                prefillPhone = phone,
+                prefillMessage = msg
+            )
         }
 
         composable(AppScreen.InboxV1.route) {
@@ -62,12 +77,26 @@ fun AppNavHost(
         }
 
         composable(AppScreen.OutgoingV3.route) {
-            OutgoingScreenV3(openDrawer = openDrawer)
+
+            OutgoingScreenV3(
+                openDrawer = openDrawer,
+                navigateToSend = { phone, msg ->
+                    navController.navigate(
+                        AppScreen.SendV3.route + "?phone=$phone&msg=$msg"
+                    )
+                }
+            )
         }
 
         composable(AppScreen.OutgoingV4.route) {
-            OutgoingScreenV4(openDrawer = openDrawer)
+            OutgoingScreenV4(
+                openDrawer = openDrawer,
+                navigateToSend = { phone, msg ->
+                    navController.navigate(
+                        AppScreen.SendV3.route + "?phone=$phone&msg=$msg"
+                    )
+                }
+            )
         }
-
     }
 }

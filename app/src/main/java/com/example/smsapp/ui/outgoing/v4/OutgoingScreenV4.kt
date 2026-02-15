@@ -20,6 +20,7 @@ import com.example.smsapp.ui.components.AppTopBar
 import com.example.smsapp.ui.outgoing.components.OutgoingMessageList
 import com.example.smsapp.ui.outgoing.components.OutgoingTabs
 import com.example.smsapp.viewmodel.InboxViewModel
+import com.example.smsapp.viewmodel.SmsViewModel
 import com.example.smsapp.viewmodel.TimeGroup
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -27,11 +28,14 @@ import com.example.smsapp.viewmodel.TimeGroup
 @Composable
 fun OutgoingScreenV4(
     viewModel: InboxViewModel = viewModel(),
+    smsViewModel: SmsViewModel = viewModel(),
     openDrawer: () -> Unit,
+    navigateToSend: (String, String) -> Unit,
     inHeadLabel: String = "Outgoing V4"
 ) {
     val grouped by viewModel.grouped.collectAsState()
     var tab by remember { mutableStateOf(TimeGroup.TODAY) }
+    val smsViewModel: SmsViewModel = viewModel()
 
     SmsPermissionLoader(onGranted = { viewModel.loadOutgoingMessages(it) }) {
         // existing Scaffold here
@@ -61,7 +65,11 @@ fun OutgoingScreenV4(
 
             OutgoingMessageList(
                 messages = grouped[tab] ?: emptyList(),
-                group = tab
+                onItemClick = { sms ->
+                    // navigate to send screen with prefilled values
+                    smsViewModel.prepareResend(sms)
+                    navigateToSend(sms.address, sms.body)
+                }
             )
         }
     }

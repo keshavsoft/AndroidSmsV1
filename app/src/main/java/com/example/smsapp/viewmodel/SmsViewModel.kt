@@ -1,6 +1,7 @@
 package com.example.smsapp.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.example.smsapp.data.SmsMessage
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import com.example.smsapp.data.SmsRepository
@@ -51,4 +52,10 @@ class SmsViewModel : ViewModel() {
             )
         }
     }
+
+    fun prepareResend(sms: SmsMessage) {
+        updatePhone(sms.address)
+        updateMessage(sms.body)
+    }
+
 }

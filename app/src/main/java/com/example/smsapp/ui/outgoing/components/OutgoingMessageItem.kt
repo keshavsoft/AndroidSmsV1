@@ -10,16 +10,18 @@ import androidx.compose.ui.unit.dp
 import com.example.smsapp.data.SmsMessage
 
 @Composable
-fun OutgoingMessageItem(sms: SmsMessage) {
-
+fun OutgoingMessageItem(
+    sms: SmsMessage,
+    onClick: (SmsMessage) -> Unit
+) {
     Card(
+        onClick = { onClick(sms) },
         modifier = Modifier
             .padding(horizontal = 12.dp, vertical = 6.dp)
             .fillMaxWidth()
     ) {
         Column(modifier = Modifier.padding(14.dp)) {
 
-            // Phone Number
             Text(
                 text = sms.address,
                 style = MaterialTheme.typography.titleMedium
@@ -27,7 +29,6 @@ fun OutgoingMessageItem(sms: SmsMessage) {
 
             Spacer(modifier = Modifier.height(6.dp))
 
-            // Message Body
             Text(
                 text = sms.body,
                 style = MaterialTheme.typography.bodyMedium
@@ -35,7 +36,6 @@ fun OutgoingMessageItem(sms: SmsMessage) {
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Date
             Text(
                 text = sms.date,
                 style = MaterialTheme.typography.labelSmall,

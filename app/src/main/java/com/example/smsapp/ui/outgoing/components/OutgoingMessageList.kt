@@ -4,21 +4,18 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import com.example.smsapp.data.SmsMessage
-import com.example.smsapp.viewmodel.TimeGroup
 
 @Composable
 fun OutgoingMessageList(
     messages: List<SmsMessage>,
-    group: TimeGroup
-){
-    if(messages.isEmpty()){
-        OutgoingEmptyState(group)
-        return
-    }
-
+    onItemClick: (SmsMessage) -> Unit
+) {
     LazyColumn {
-        items(messages){ sms ->
-            OutgoingMessageItem(sms)
+        items(messages) { sms ->
+            OutgoingMessageItem(
+                sms = sms,
+                onClick = onItemClick
+            )
         }
     }
 }
