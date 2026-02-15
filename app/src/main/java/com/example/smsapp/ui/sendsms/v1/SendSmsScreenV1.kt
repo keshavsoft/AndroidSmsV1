@@ -1,8 +1,6 @@
-package com.example.smsapp.ui
+package com.example.smsapp.ui.sendsms.v1
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -13,16 +11,17 @@ import com.example.smsapp.viewmodel.SmsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SmsScreen(
+fun SendSmsScreenV1(
     viewModel: SmsViewModel = viewModel(),
     openDrawer: () -> Unit
 ) {
     val state by viewModel.uiState.collectAsState()
+    val commonHeadLabel="Send SMS V1"
 
     Scaffold(
         topBar = {
             AppTopBar(
-                title = "Material 3 SMS App",
+                title = commonHeadLabel,
                 showBack = false,
                 onMenuClick = openDrawer
             )

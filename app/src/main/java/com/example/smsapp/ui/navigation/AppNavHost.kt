@@ -5,11 +5,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.smsapp.AppScreen
-import com.example.smsapp.ui.SmsScreen
+import com.example.smsapp.ui.sendsms.v1.SendSmsScreenV1
 import com.example.smsapp.ui.inbox.v1.InboxScreenV1
 import com.example.smsapp.ui.inbox.v2.InboxScreenV2
 import com.example.smsapp.ui.incoming.v1.IncomingScreenV1
 import com.example.smsapp.ui.outgoing.v1.OutgoingScreenV1
+import com.example.smsapp.ui.sendsms.v2.SendSmsScreenV2
 
 @Composable
 fun AppNavHost(
@@ -22,7 +23,11 @@ fun AppNavHost(
     ) {
 
         composable(AppScreen.SendV1.route) {
-            SmsScreen(openDrawer = openDrawer)
+            SendSmsScreenV1(openDrawer = openDrawer)
+        }
+
+        composable(AppScreen.SendV2.route) {
+            SendSmsScreenV2(openDrawer = openDrawer)
         }
 
         composable(AppScreen.InboxV1.route) {

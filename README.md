@@ -150,3 +150,8 @@ Jetpack Compose.
 
 
 Docs added
+
+
+1.1.2
+
+send sms v2 perfect with ui
