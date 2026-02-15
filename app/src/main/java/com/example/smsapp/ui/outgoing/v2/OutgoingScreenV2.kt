@@ -1,4 +1,4 @@
-package com.example.smsapp.ui.outgoing.v1
+package com.example.smsapp.ui.outgoing.v2
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -19,13 +19,13 @@ import com.example.smsapp.viewmodel.InboxViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OutgoingScreenV1(
+fun OutgoingScreenV2(
     viewModel: InboxViewModel = viewModel(),
-    openDrawer: () -> Unit
+    openDrawer: () -> Unit,
+    inHeadLabel: String="Outgoing V2"
 ) {
     val context = LocalContext.current
     val messages by viewModel.messages.collectAsState()
-val commonHeadLabel="Outgoing V1"
 
     val permissionLauncher =
         rememberLauncherForActivityResult(
@@ -51,7 +51,7 @@ val commonHeadLabel="Outgoing V1"
     Scaffold(
         topBar = {
             AppTopBar(
-                title = commonHeadLabel,
+                title = inHeadLabel,
                 showBack = false,
                 onMenuClick = openDrawer
             )

@@ -10,6 +10,7 @@ import com.example.smsapp.ui.inbox.v1.InboxScreenV1
 import com.example.smsapp.ui.inbox.v2.InboxScreenV2
 import com.example.smsapp.ui.incoming.v1.IncomingScreenV1
 import com.example.smsapp.ui.outgoing.v1.OutgoingScreenV1
+import com.example.smsapp.ui.outgoing.v2.OutgoingScreenV2
 import com.example.smsapp.ui.sendsms.v2.SendSmsScreenV2
 import com.example.smsapp.ui.sendsms.v3.SendSmsScreenV3
 
@@ -49,6 +50,10 @@ fun AppNavHost(
 
         composable(AppScreen.OutgoingV1.route) {
             OutgoingScreenV1(openDrawer = openDrawer)
+        }
+
+        composable(AppScreen.OutgoingV2.route) {
+            OutgoingScreenV2(openDrawer = openDrawer)
         }
 
     }
