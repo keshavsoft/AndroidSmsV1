@@ -10,7 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.smsapp.ui.common.SmartTimeFormatter
-import com.example.smsapp.ui.incoming.v5.model.IncomingConversation
+import com.example.smsapp.ui.incoming.model.IncomingConversation
 
 @Composable
 fun IncomingConversationItemV5(

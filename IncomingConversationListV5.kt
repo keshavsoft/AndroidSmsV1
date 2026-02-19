@@ -5,7 +5,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.smsapp.ui.incoming.common.IncomingEmptyState
-import com.example.smsapp.ui.incoming.v5.model.IncomingConversation
+import com.example.smsapp.ui.incoming.model.IncomingConversation
 
 @Composable
 fun IncomingConversationListV5(
