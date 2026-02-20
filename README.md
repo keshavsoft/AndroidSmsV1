@@ -1,157 +1,86 @@
-# 📱 SMS Architecture Demo App
+# Incoming V8 – Conversation List (Name-Aware)
 
-Jetpack Compose + Material 3 + MVVM
+## Purpose
 
-------------------------------------------------------------------------
+Incoming V9 introduces contact‑aware conversations. Instead of showing only phone numbers, the screen now resolves sender identity using device contacts.
 
-## 📖 Overview
+This version focuses on **clarity of conversations** rather than new navigation or UI experimentation.
 
-This project is a modern Android SMS application built using Jetpack
-Compose and Material 3.\
-It is designed from a **developer architecture perspective**, focusing
-on scalability, clean structure, and maintainability.
+---
 
-This app demonstrates:
+## What is new in V9
 
--   Clean MVVM architecture
--   Repository pattern
--   Model-driven expandable drawer navigation
--   Version-based screen structure (V1, V2)
--   Reading Incoming and Sent SMS
--   Separation of concerns between UI and business logic
+* Contacts are read from the device (READ_CONTACTS)
+* Phone numbers are normalized before matching
+* Conversation sender shows **contact name if available**
+* Falls back to number when contact not found
+* No visible "contacts feature" for user – seamless integration
 
-This is not just an SMS app --- it is an architecture learning project.
+---
 
-------------------------------------------------------------------------
+## User Experience Goal
 
-## 🏗 Architecture
+Users think in people, not numbers.
+V8 makes the inbox readable without changing workflow.
 
-The application follows layered architecture:
+Before:
 
-MainActivity\
-→ AppDrawer (Navigation UI Layer)\
-→ AppNavHost (Routing Layer)\
-→ Screens (UI Layer)\
-→ ViewModel (State Layer)\
-→ Repository (Data Layer)\
-→ Android SMS Content Provider
+> +91 9876543210
 
-Each layer has a single responsibility.
+After:
 
-------------------------------------------------------------------------
+> Ramesh Kumar
 
-## 📂 Project Structure
+---
 
-com.example.smsapp
+## Architecture
 
--   AppScreen.kt → Navigation model
--   MainActivity.kt → Entry point
+### Data Flow
 
-ui/ - navigation/ - AppDrawer.kt - AppNavHost.kt - components/ -
-AppTopBar.kt - inbox/ - v1/ - v2/ - incoming/ - v1/ - send/
+1. Load SMS messages
+2. Load contacts map (number → name)
+3. Normalize numbers
+4. Group conversations by normalized sender
+5. Replace address with contact name
 
-viewmodel/ - InboxViewModel.kt
+```
+IncomingScreenV8
+    ├── loadIncomingSms()
+    ├── loadContacts()
+    └── groupBySender(messages, contactsMap)
+```
 
-data/ - SmsReaderRepository.kt - SmsMessage.kt
+---
 
-------------------------------------------------------------------------
+## Design Principle
 
-## 🧭 Navigation System
+Silent enhancement.
+No new screens required for basic usage.
+Contacts improve SMS automatically.
 
-Navigation is model-driven using `AppScreen` and `DrawerSection`.
+---
 
-To add a new drawer section:
+## Not Included Yet
 
-1.  Add a new object inside `AppScreen`
-2.  Add it to `drawerStructure`
-3.  Register route inside `AppNavHost`
+* Contacts browsing UI
+* Contact sync settings screen
+* Persistent caching (Room DB)
+* Avatar photos
 
-No changes are required inside drawer UI logic.
+---
 
-------------------------------------------------------------------------
+## Future Direction (Possible V10)
 
-## ✉ SMS Features
+* Avatar initials / photo
+* Fast search by name
+* Thread screen name header
+* Cached contacts repository
 
-### Send SMS
+---
 
-Uses Android `SmsManager`.
+## Why this version exists
 
-### Read Incoming SMS
+Previous versions (V1–V8) focused on layout and grouping.
+V8 focuses on **identity recognition**.
 
-Uses: Telephony.Sms.Inbox.CONTENT_URI
-
-### Read Sent SMS
-
-Uses: Telephony.Sms.Sent.CONTENT_URI
-
-### Conversation Grouping (Inbox V2)
-
-Messages grouped by sender using Kotlin `groupBy`.
-
-------------------------------------------------------------------------
-
-## 🧠 ViewModel Strategy
-
-Uses `StateFlow` for reactive UI updates.
-
--   UI observes state
--   ViewModel loads data
--   Repository handles SMS queries
--   UI contains no business logic
-
-------------------------------------------------------------------------
-
-## 🗄 Repository Layer
-
-All SMS queries are handled using Android `ContentResolver`.
-
-Incoming messages → Inbox URI\
-Outgoing messages → Sent URI
-
-Filtering logic belongs strictly in the repository layer.
-
-------------------------------------------------------------------------
-
-## 🔐 Permissions
-
-The app uses:
-
--   READ_SMS
--   SEND_SMS
-
-Runtime permission handling is implemented.
-
-------------------------------------------------------------------------
-
-## 🚀 Scalability
-
-This architecture allows:
-
--   Adding new drawer sections without modifying drawer UI
--   Adding new feature versions (V1, V2) safely
--   Extending into conversation screens
--   Adding unread badge counts
--   Supporting future MVI or Paging upgrades
-
-------------------------------------------------------------------------
-
-## 🎯 Purpose
-
-This repository demonstrates how to evolve from:
-
-"Make it work"
-
-to
-
-"Make it scalable and maintainable."
-
-It serves as a structured example of modern Android development using
-Jetpack Compose.
-
-
-Docs added
-
-
-1.1.2
-
-send sms v2 perfect with ui
+This is the first version where conversations become human‑readable.
