@@ -38,7 +38,6 @@ fun OutgoingScreenV8(
 ) {
     val grouped by viewModel.grouped.collectAsState()
     var tab by remember { mutableStateOf(TimeGroup.TODAY) }
-    val smsViewModel: SmsViewModel = viewModel()
     var tick by remember { mutableStateOf(0) }
     val context = LocalContext.current
 
@@ -74,7 +73,11 @@ fun OutgoingScreenV8(
                     onSelected = { tab = it }
                 )
 
+<<<<<<< HEAD
                 OutgoingMessageListV8(
+=======
+                OutgoingMessageListV7(
+>>>>>>> 629a303 (outgoing v8 added)
                     messages = grouped[tab] ?: emptyList(),
                     tick = tick,
                     onItemClick = { sms ->
