@@ -85,7 +85,6 @@ fun NavGraphBuilder.outgoingGraph(
         )
     }
 
-
     composable(AppScreen.OutgoingV8.route) {
         OutgoingScreenV8(
             openDrawer = openDrawer,

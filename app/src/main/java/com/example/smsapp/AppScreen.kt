@@ -61,7 +61,7 @@ sealed class AppScreen(
                     title = "Outgoing",
                     children = listOf(
                         OutgoingV1, OutgoingV2, OutgoingV3, OutgoingV4, OutgoingV5,
-                        OutgoingV6,OutgoingV7,OutgoingV8
+                        OutgoingV6, OutgoingV7, OutgoingV8
                     )
                 )
             )

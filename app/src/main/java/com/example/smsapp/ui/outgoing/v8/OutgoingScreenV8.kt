@@ -73,11 +73,7 @@ fun OutgoingScreenV8(
                     onSelected = { tab = it }
                 )
 
-<<<<<<< HEAD
                 OutgoingMessageListV8(
-=======
-                OutgoingMessageListV7(
->>>>>>> 629a303 (outgoing v8 added)
                     messages = grouped[tab] ?: emptyList(),
                     tick = tick,
                     onItemClick = { sms ->
