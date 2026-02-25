@@ -1,7 +1,8 @@
 .gradle/
 .idea/
 .kotlinc/
-
+Untracked files:
+  local.properties
 /build/
 */build/
 *.iml
@@ -9,3 +10,4 @@
 .externalNativeBuild/
 captures/
 .DS_Store
+/local.properties
