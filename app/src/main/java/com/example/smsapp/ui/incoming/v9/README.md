@@ -1,4 +1,4 @@
-# Incoming V8 – Conversation List (Name-Aware)
+# Incoming V9 – Conversation List (Name-Aware)
 
 ## Purpose
 
@@ -8,7 +8,7 @@ This version focuses on **clarity of conversations** rather than new navigation 
 
 ---
 
-## What is new in V8
+## What is new in V9
 
 * Contacts are read from the device (READ_CONTACTS)
 * Phone numbers are normalized before matching

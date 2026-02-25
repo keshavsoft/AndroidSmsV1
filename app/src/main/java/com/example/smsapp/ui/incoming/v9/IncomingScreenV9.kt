@@ -1,4 +1,4 @@
-package com.example.smsapp.ui.incoming.v8
+package com.example.smsapp.ui.incoming.v9
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,10 +22,10 @@ import com.example.smsapp.ui.incoming.common.groupBySenderV1
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun IncomingScreenV8(
+fun IncomingScreenV9(
     openDrawer: () -> Unit,
     navigateToThread: (String, String) -> Unit,
-    inHeadLabel: String = "Incoming V8"
+    inHeadLabel: String = "Incoming V9"
 ) {
     val context = LocalContext.current
     var messages by remember { mutableStateOf<List<SmsMessage>>(emptyList()) }
