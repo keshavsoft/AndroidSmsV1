@@ -7,17 +7,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import com.example.smsapp.contacts.data.loadContacts
 import com.example.smsapp.data.SmsMessage
+import com.example.smsapp.data.SmsReaderRepository
 import com.example.smsapp.ui.components.AppTopBar
-import com.example.smsapp.ui.outgoing.common.loadOutgoingSms
-import com.example.smsapp.ui.outgoing.components.OutgoingMessageList
+import com.example.smsapp.ui.incoming.common.IncomingPermission
+import com.example.smsapp.ui.incoming.common.groupBySenderV1
+import com.example.smsapp.ui.incoming.conversationtypes.groupbysenderV1.IncomingConversationListGroupSenderV1
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
@@ -29,8 +28,15 @@ fun OutgoingScreenV9(
 ) {
     val context = LocalContext.current
     var messages by remember { mutableStateOf<List<SmsMessage>>(emptyList()) }
+    var contactsMap by remember { mutableStateOf<Map<String, String>>(emptyMap()) }
+    val repository = remember { SmsReaderRepository(context) }
 
-    val conversations = remember(messages) { messages.groupBy { it.address } }
+    val conversations = remember(messages, contactsMap) { groupBySenderV1(messages, contactsMap) }
+
+    IncomingPermission(context) {
+        messages = repository.getOutgoingMessages()
+        contactsMap = loadContacts(context)
+    }
 
     Scaffold(
         topBar = {
@@ -42,11 +48,11 @@ fun OutgoingScreenV9(
                 .padding(padding)
                 .fillMaxSize()
         ) {
-            OutgoingMessageList(
+            IncomingConversationListGroupSenderV1(
                 conversations = conversations,
                 modifier = Modifier.fillMaxSize(),
-                onOpenConversation = { address ->
-                    navigateToThread(address)
+                onOpenConversation = { convo ->
+                    navigateToThread(convo.phoneNumber)
                 }
             )
         }

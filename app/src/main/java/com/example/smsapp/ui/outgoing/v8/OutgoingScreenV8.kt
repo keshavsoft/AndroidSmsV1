@@ -7,16 +7,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.example.smsapp.data.SmsMessage
+import com.example.smsapp.data.SmsReaderRepository
 import com.example.smsapp.ui.components.AppTopBar
-import com.example.smsapp.ui.outgoing.common.loadOutgoingSms
 import com.example.smsapp.ui.outgoing.components.OutgoingMessageList
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -29,8 +25,11 @@ fun OutgoingScreenV8(
 ) {
     val context = LocalContext.current
     var messages by remember { mutableStateOf<List<SmsMessage>>(emptyList()) }
+    val repository = remember { SmsReaderRepository(context) }
 
-    val conversations = remember(messages) { messages.groupBy { it.address } }
+    LaunchedEffect(Unit) {
+        messages = repository.getOutgoingMessages()
+    }
 
     Scaffold(
         topBar = {
@@ -43,10 +42,9 @@ fun OutgoingScreenV8(
                 .fillMaxSize()
         ) {
             OutgoingMessageList(
-                conversations = conversations,
-                modifier = Modifier.fillMaxSize(),
-                onOpenConversation = { address ->
-                    navigateToThread(address)
+                messages = messages,
+                onItemClick = { message ->
+                    navigateToThread(message.address)
                 }
             )
         }
