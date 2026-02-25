@@ -1,15 +1,13 @@
+.gradle/
+.idea/
+.kotlinc/
+Untracked files:
+  local.properties
+/build/
+*/build/
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+.cxx/
+.externalNativeBuild/
+captures/
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
+/local.properties
