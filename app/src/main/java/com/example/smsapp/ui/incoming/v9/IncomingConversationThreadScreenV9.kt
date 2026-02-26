@@ -1,4 +1,4 @@
-package com.example.smsapp.ui.incoming.v8
+package com.example.smsapp.ui.incoming.v9
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,7 +15,7 @@ import com.example.smsapp.utils.normalizeAddress
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun IncomingConversationThreadScreenV8(
+fun IncomingConversationThreadScreenV9(
     address: String,
     title: String = "",
     openDrawer: () -> Unit
