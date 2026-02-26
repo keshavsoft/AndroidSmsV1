@@ -4,14 +4,18 @@ import android.Manifest
 import android.content.pm.PackageManager
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -20,6 +24,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.smsapp.data.SmsMessage
 import com.example.smsapp.ui.components.AppTopBar
 import com.example.smsapp.viewmodel.InboxViewModel
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -28,6 +33,13 @@ fun InboxScreenV2(
     openDrawer: () -> Unit
 ) {
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    val listState = rememberLazyListState()
+    val showButton by remember {
+        derivedStateOf {
+            listState.firstVisibleItemIndex > 0
+        }
+    }
 
     var groupedMessages by remember { mutableStateOf<Map<String, List<SmsMessage>>>(emptyMap()) }
 
@@ -62,46 +74,74 @@ fun InboxScreenV2(
         }
     ) { padding ->
 
-        LazyColumn(
+        Box(
             modifier = Modifier
                 .padding(padding)
                 .fillMaxSize()
         ) {
+            LazyColumn(
+                state = listState,
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
 
-            items(groupedMessages.entries.toList()) { entry  ->
-                val address = entry.key
-                val messages = entry.value
-                val latestMessage = messages.first()
+                items(groupedMessages.entries.toList()) { entry ->
+                    val address = entry.key
+                    val messages = entry.value
+                    val latestMessage = messages.first()
 
-                Card(
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .fillMaxWidth()
-                ) {
-                    Column(modifier = Modifier.padding(12.dp)) {
+                    Card(
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .fillMaxWidth()
+                    ) {
+                        Column(modifier = Modifier.padding(12.dp)) {
 
-                        Text(
-                            text = address,
-                            style = MaterialTheme.typography.titleMedium
-                        )
+                            Text(
+                                text = address,
+                                style = MaterialTheme.typography.titleMedium
+                            )
 
-                        Spacer(modifier = Modifier.height(4.dp))
+                            Spacer(modifier = Modifier.height(4.dp))
 
-                        Text(
-                            text = "${messages.size} messages",
-                            style = MaterialTheme.typography.bodyMedium
-                        )
+                            Text(
+                                text = "${messages.size} messages",
+                                style = MaterialTheme.typography.bodyMedium
+                            )
 
-                        Spacer(modifier = Modifier.height(4.dp))
+                            Spacer(modifier = Modifier.height(4.dp))
 
-                        Text(
-                            text = latestMessage.body,
-                            style = MaterialTheme.typography.labelSmall,
-                            maxLines = 1
-                        )
+                            Text(
+                                text = latestMessage.body,
+                                style = MaterialTheme.typography.labelSmall,
+                                maxLines = 1
+                            )
+                        }
                     }
-                }
 
+                }
+            }
+
+            AnimatedVisibility(
+                visible = showButton,
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(16.dp),
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                FloatingActionButton(
+                    onClick = {
+                        scope.launch {
+                            listState.animateScrollToItem(index = 0)
+                        }
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowUpward,
+                        contentDescription = "Scroll to top"
+                    )
+                }
             }
         }
     }
