@@ -1,14 +1,14 @@
-# Incoming V8 – Conversation List (Name-Aware)
+# Incoming V10 – Conversation List (Name-Aware)
 
 ## Purpose
 
-Incoming V8 introduces contact‑aware conversations. Instead of showing only phone numbers, the screen now resolves sender identity using device contacts.
+Incoming V10 introduces contact‑aware conversations. Instead of showing only phone numbers, the screen now resolves sender identity using device contacts.
 
 This version focuses on **clarity of conversations** rather than new navigation or UI experimentation.
 
 ---
 
-## What is new in V8
+## What is new in V10
 
 * Contacts are read from the device (READ_CONTACTS)
 * Phone numbers are normalized before matching

@@ -1,4 +1,4 @@
-package com.example.smsapp.ui.outgoing.v8
+package com.example.smsapp.ui.outgoing.v9
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -29,12 +29,12 @@ import androidx.compose.ui.platform.LocalContext
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OutgoingScreenV8(
+fun OutgoingScreenV9(
     viewModel: InboxViewModel = viewModel(),
     smsViewModel: SmsViewModel = viewModel(),
     openDrawer: () -> Unit,
     navigateToSend: (String, String) -> Unit,
-    inHeadLabel: String = "Outgoing V8"
+    inHeadLabel: String = "Outgoing V9"
 ) {
     val grouped by viewModel.grouped.collectAsState()
     var tab by remember { mutableStateOf(TimeGroup.TODAY) }
@@ -74,7 +74,7 @@ fun OutgoingScreenV8(
                     onSelected = { tab = it }
                 )
 
-                OutgoingMessageListV8(
+                OutgoingMessageListV9(
                     messages = grouped[tab] ?: emptyList(),
                     tick = tick,
                     onItemClick = { sms ->

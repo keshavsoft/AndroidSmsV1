@@ -1,4 +1,4 @@
-package com.example.smsapp.ui.outgoing.v8
+package com.example.smsapp.ui.outgoing.v9
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -7,20 +7,20 @@ import com.example.smsapp.data.SmsMessage
 import com.example.smsapp.ui.outgoing.components.formatTimeAgoWithTick
 
 @Composable
-fun OutgoingMessageListV8(
+fun OutgoingMessageListV9(
     messages: List<SmsMessage>,
     tick: Int,
     onItemClick: (SmsMessage) -> Unit
 ) {
 
     if (messages.isEmpty()) {
-        OutgoingEmptyStateV8()
+        OutgoingEmptyStateV9()
         return
     }
 
     LazyColumn {
         items(messages) { sms ->
-            OutgoingMessageItemV8(
+            OutgoingMessageItemV9(
                 sms = sms,
                 timeAgo = formatTimeAgoWithTick(sms.date, tick),
                 onClick = onItemClick

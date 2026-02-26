@@ -1,4 +1,4 @@
-package com.example.smsapp.ui.outgoing.v8
+package com.example.smsapp.ui.outgoing.v9
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun OutgoingEmptyStateV8() {
+fun OutgoingEmptyStateV9() {
 
     Box(
         modifier = Modifier.fillMaxSize(),

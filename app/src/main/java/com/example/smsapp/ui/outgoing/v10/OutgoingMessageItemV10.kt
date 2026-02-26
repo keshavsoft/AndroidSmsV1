@@ -1,4 +1,4 @@
-package com.example.smsapp.ui.outgoing.v9
+package com.example.smsapp.ui.outgoing.v10
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
@@ -13,7 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
 
 @Composable
-fun OutgoingMessageItemV9(
+fun OutgoingMessageItemV10(
     sms: SmsMessage,
     timeAgo: String,
     onClick: (SmsMessage) -> Unit
