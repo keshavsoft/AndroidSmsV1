@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AndroidSmsV1 - README</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            background: #f4f6f8;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        pre, code {
+            background: #eeeeee;
+            padding: 10px;
+            border-radius: 6px;
+            display: block;
+            overflow-x: auto;
+        }
+        ul {
+            margin-left: 20px;
+        }
+        hr {
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>AndroidSmsV1</h1>
+
+<h2>Prerequisites</h2>
+<ul>
+    <li>Android Studio (latest version)</li>
+    <li>Internet connection (for Gradle)</li>
+    <li>Android SDK</li>
+    <li><strong>Real Android device</strong> (SMS does not work on emulator)</li>
+</ul>
+
+<hr>
+
+<h2>Setup & Run Project</h2>
+
+<h3>Clone Repository</h3>
+<pre>git clone https://github.com/keshavsoft/AndroidSmsV1.git</pre>
+
+<h3>Open in Android Studio</h3>
+<ul>
+    <li>Open Android Studio</li>
+    <li>Open → Existing Project</li>
+    <li>Select <code>AndroidSmsV1</code> folder</li>
+</ul>
+
+<h3>Gradle Sync</h3>
+<ul>
+    <li>Wait until <strong>Gradle Build Finished</strong></li>
+    <li>First build may take 5–10 minutes</li>
+</ul>
+
+<h3>Connect Device</h3>
+<ul>
+    <li>Enable Developer Options</li>
+    <li>Enable USB Debugging</li>
+    <li>Connect phone via USB</li>
+</ul>
+
+<h3>Permissions</h3>
+<p>Ensure the following permissions exist in <code>AndroidManifest.xml</code>:</p>
+<ul>
+    <li>READ_SMS</li>
+    <li>SEND_SMS</li>
+    <li>RECEIVE_SMS</li>
+</ul>
+
+<h3>Run App</h3>
+<ul>
+    <li>Select device</li>
+    <li>Click ▶ Run</li>
+    <li>Grant runtime permissions</li>
+</ul>
+
+<hr>
+
+<h2>App Testing</h2>
+
+<h3>Inbox</h3>
+<ul>
+    <li>View received SMS</li>
+    <li>Sender number, message, date/time</li>
+</ul>
+
+<h3>Send SMS</h3>
+<ul>
+    <li>Enter phone number</li>
+    <li>Type message</li>
+    <li>Press Send</li>
+</ul>
+
+<h3>Sent Messages</h3>
+<ul>
+    <li>View sent SMS history</li>
+</ul>
+
+<hr>
+
+<h2>Architecture Flow</h2>
+<pre>
+MainActivity
+   ↓
+UI Screens
+   ↓
+ViewModel
+   ↓
+Repository
+   ↓
+Android SMS Provider
+</pre>
+
+<hr>
+
+<h2>Troubleshooting</h2>
+<ul>
+    <li>File → Sync Project with Gradle Files</li>
+    <li>Build → Clean Project</li>
+    <li>Build → Rebuild Project</li>
+</ul>
+
+<hr>
+
+<h2>Pull Request Process</h2>
+
+<h3>Commit</h3>
+<pre>git commit -m "Improved SMS permission handling"</pre>
+
+<h3>Push</h3>
+<pre>git push origin feature-branch-name</pre>
+
+<p>✅ Pull Request submitted successfully.</p>
+
+</div>
+
+</body>
+</html>
