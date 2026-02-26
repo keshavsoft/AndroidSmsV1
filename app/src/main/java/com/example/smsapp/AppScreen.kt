@@ -23,6 +23,8 @@ sealed class AppScreen(
     object InboxIncomingV6 : AppScreen("inbox_incoming_v6", "Incoming V6")
     object InboxIncomingV7 : AppScreen("inbox_incoming_v7", "V7")
     object InboxIncomingV8 : AppScreen("inbox_incoming_v8", "V8")
+    object InboxIncomingV9 : AppScreen("inbox_incoming_v9", "V9")
+
 
     // Inbox Screens for Outgoing
     object OutgoingV1 : AppScreen("outgoing_v1", "Outgoing V1")
@@ -32,6 +34,7 @@ sealed class AppScreen(
     object OutgoingV5 : AppScreen("outgoing_v5", "Outgoing V5")
     object OutgoingV6 : AppScreen("outgoing_v6", "Outgoing V6")
     object OutgoingV7 : AppScreen("outgoing_v7", "V7")
+    object OutgoingV8 : AppScreen("outgoing_v8", "V8")
 
     companion object {
 
@@ -52,14 +55,14 @@ sealed class AppScreen(
                 DrawerSection(
                     title = "Incoming",
                     children = listOf(InboxIncomingV1, InboxIncomingV2, InboxIncomingV3, InboxIncomingV4,
-                        InboxIncomingV5, InboxIncomingV6,InboxIncomingV7,InboxIncomingV8)
+                        InboxIncomingV5, InboxIncomingV6,InboxIncomingV7,InboxIncomingV8,InboxIncomingV9)
                 ),
 // outgoing section//
                 DrawerSection(
                     title = "Outgoing",
                     children = listOf(
                         OutgoingV1, OutgoingV2, OutgoingV3, OutgoingV4, OutgoingV5,
-                        OutgoingV6,OutgoingV7
+                        OutgoingV6,OutgoingV7,OutgoingV8
                     )
                 )
             )
