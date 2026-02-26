@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 hello
+=======
+my name is charan nadh damarla and
+>>>>>>> 5db5acb6b087ebe746bdc9345521aab7a2360ed4
