@@ -11,29 +11,23 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun OutgoingEmptyStateV8() {
-
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
             Icon(
                 imageVector = Icons.Outlined.MarkChatRead,
                 contentDescription = null,
                 modifier = Modifier.size(72.dp),
                 tint = MaterialTheme.colorScheme.primary
             )
-
             Spacer(Modifier.height(16.dp))
-
             Text(
                 text = "No sent messages (V8)",
                 style = MaterialTheme.typography.titleLarge
             )
-
             Spacer(Modifier.height(6.dp))
-
             Text(
                 text = "Nothing sent in this time range",
                 style = MaterialTheme.typography.bodyMedium,

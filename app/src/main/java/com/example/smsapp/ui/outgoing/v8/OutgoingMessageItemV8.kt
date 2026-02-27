@@ -10,21 +10,19 @@ import com.example.smsapp.data.SmsMessage
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Send
+import androidx.compose.material.icons.automirrored.filled.Send
 
 @Composable
 fun OutgoingMessageItemV8(
     sms: SmsMessage,
     timeAgo: String,
     onClick: (SmsMessage) -> Unit
-)
-{
+) {
     Row(
         modifier = Modifier.padding(14.dp).fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Column(Modifier.weight(1f)) {
-
             Text(text = sms.address, style = MaterialTheme.typography.titleMedium)
             Spacer(Modifier.height(6.dp))
             Text(text = sms.body, style = MaterialTheme.typography.bodyMedium)
@@ -34,7 +32,7 @@ fun OutgoingMessageItemV8(
         }
 
         IconButton(onClick = { onClick(sms) }) {
-            Icon(Icons.Default.Send, contentDescription = "Open")
+            Icon(Icons.AutoMirrored.Filled.Send, contentDescription = "Open")
         }
     }
 }

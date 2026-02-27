@@ -12,7 +12,6 @@ fun OutgoingMessageListV8(
     tick: Int,
     onItemClick: (SmsMessage) -> Unit
 ) {
-
     if (messages.isEmpty()) {
         OutgoingEmptyStateV8()
         return

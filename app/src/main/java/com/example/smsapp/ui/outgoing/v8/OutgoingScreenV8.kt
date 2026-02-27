@@ -1,6 +1,7 @@
 package com.example.smsapp.ui.outgoing.v8
 
 import android.os.Build
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +10,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.smsapp.ui.common.SmsPermissionLoader
 import com.example.smsapp.ui.components.AppTopBar
@@ -17,8 +19,6 @@ import com.example.smsapp.viewmodel.InboxViewModel
 import com.example.smsapp.viewmodel.SmsViewModel
 import com.example.smsapp.viewmodel.TimeGroup
 import kotlinx.coroutines.delay
-import android.widget.Toast
-import androidx.compose.ui.platform.LocalContext
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
@@ -76,7 +76,9 @@ fun OutgoingScreenV8(
                 )
 
                 LaunchedEffect(tick, grouped[tab]) {
-                    Toast.makeText(context, "UI Refreshed V8", Toast.LENGTH_SHORT).show()
+                    if (tick > 0) {
+                        Toast.makeText(context, "UI Refreshed (V8)", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
