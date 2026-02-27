@@ -1,0 +1,85 @@
+package com.example.smsapp.ui.outgoing.v9
+
+import android.os.Build
+import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.smsapp.ui.common.SmsPermissionLoader
+import com.example.smsapp.ui.components.AppTopBar
+import com.example.smsapp.ui.outgoing.components.OutgoingTabs
+import com.example.smsapp.viewmodel.InboxViewModel
+import com.example.smsapp.viewmodel.SmsViewModel
+import com.example.smsapp.viewmodel.TimeGroup
+import kotlinx.coroutines.delay
+
+@RequiresApi(Build.VERSION_CODES.O)
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun OutgoingScreenV9(
+    viewModel: InboxViewModel = viewModel(),
+    smsViewModel: SmsViewModel = viewModel(),
+    openDrawer: () -> Unit,
+    navigateToSend: (String, String) -> Unit,
+    inHeadLabel: String = "Outgoing V9"
+) {
+    val grouped by viewModel.grouped.collectAsState()
+    var tab by remember { mutableStateOf(TimeGroup.TODAY) }
+    var tick by remember { mutableStateOf(0) }
+    val context = LocalContext.current
+
+    SmsPermissionLoader(onGranted = { viewModel.loadOutgoingMessages(it) }) {
+        LaunchedEffect(Unit) {
+            while (true) {
+                delay(60000)
+                tick++
+            }
+        }
+
+        Scaffold(
+            topBar = {
+                AppTopBar(
+                    title = inHeadLabel,
+                    showBack = false,
+                    onMenuClick = openDrawer
+                )
+            }
+        ) { padding ->
+            Column(
+                modifier = Modifier
+                    .padding(padding)
+                    .fillMaxSize()
+            ) {
+                val counts = grouped.mapValues { it.value.size }
+
+                OutgoingTabs(
+                    selected = tab,
+                    counts = counts,
+                    onSelected = { tab = it }
+                )
+
+                OutgoingMessageListV9(
+                    messages = grouped[tab] ?: emptyList(),
+                    tick = tick,
+                    onItemClick = { sms ->
+                        smsViewModel.prepareResend(sms)
+                        navigateToSend(sms.address, sms.body)
+                    }
+                )
+
+                LaunchedEffect(tick, grouped[tab]) {
+                    if (tick > 0) {
+                        Toast.makeText(context, "UI Refreshed V9", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+    }
+}
