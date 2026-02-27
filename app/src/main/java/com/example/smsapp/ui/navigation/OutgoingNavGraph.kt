@@ -8,12 +8,20 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.smsapp.AppScreen
 import com.example.smsapp.ui.outgoing.v1.OutgoingScreenV1
+import com.example.smsapp.ui.outgoing.v10.OutgoingScreenV10
 import com.example.smsapp.ui.outgoing.v2.OutgoingScreenV2
 import com.example.smsapp.ui.outgoing.v3.OutgoingScreenV3
 import com.example.smsapp.ui.outgoing.v4.OutgoingScreenV4
 import com.example.smsapp.ui.outgoing.v5.OutgoingScreenV5
 import com.example.smsapp.ui.outgoing.v6.OutgoingScreenV6
 import com.example.smsapp.ui.outgoing.v7.OutgoingScreenV7
+<<<<<<< HEAD
+import com.example.smsapp.ui.outgoing.v8.OutgoingScreenV8
+import com.example.smsapp.ui.outgoing.v9.OutgoingScreenV9
+import com.example.smsapp.ui.outgoing.v10.OutgoingScreenV10
+=======
+import com.example.smsapp.ui.outgoing.v9.OutgoingScreenV9
+>>>>>>> 44add2766ff4005ef8fe3e3afbd2915edf269538
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun NavGraphBuilder.outgoingGraph(
@@ -76,6 +84,42 @@ fun NavGraphBuilder.outgoingGraph(
 
     composable(AppScreen.OutgoingV7.route) {
         OutgoingScreenV7(
+            openDrawer = openDrawer,
+            navigateToSend = { phone, msg ->
+                navController.navigate(
+                    AppScreen.SendV3.route + "?phone=$phone&msg=$msg"
+                )
+            }
+        )
+    }
+
+<<<<<<< HEAD
+    composable(AppScreen.OutgoingV8.route) {
+        OutgoingScreenV8(
+            openDrawer = openDrawer,
+            navigateToSend = { phone, msg ->
+                navController.navigate(
+                    AppScreen.SendV3.route + "?phone=$phone&msg=$msg"
+                )
+            }
+        )
+    }
+
+=======
+>>>>>>> 44add2766ff4005ef8fe3e3afbd2915edf269538
+    composable(AppScreen.OutgoingV9.route) {
+        OutgoingScreenV9(
+            openDrawer = openDrawer,
+            navigateToSend = { phone, msg ->
+                navController.navigate(
+                    AppScreen.SendV3.route + "?phone=$phone&msg=$msg"
+                )
+            }
+        )
+    }
+
+    composable(AppScreen.OutgoingV10.route) {
+        OutgoingScreenV10(
             openDrawer = openDrawer,
             navigateToSend = { phone, msg ->
                 navController.navigate(
