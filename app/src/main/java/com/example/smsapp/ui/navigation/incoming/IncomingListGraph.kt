@@ -1,5 +1,6 @@
 package com.example.smsapp.ui.navigation.incoming
 
+import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.navigation.NavController
@@ -7,6 +8,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.smsapp.AppScreen
 import com.example.smsapp.ui.incoming.v1.IncomingScreenV1
+import com.example.smsapp.ui.incoming.v10.IncomingScreenV10
 import com.example.smsapp.ui.incoming.v2.IncomingScreenV2
 import com.example.smsapp.ui.incoming.v3.IncomingScreenV3
 import com.example.smsapp.ui.incoming.v4.IncomingScreenV4
@@ -15,8 +17,11 @@ import com.example.smsapp.ui.incoming.v6.IncomingScreenV6
 import com.example.smsapp.ui.incoming.v7.IncomingScreenV7
 import com.example.smsapp.ui.incoming.v8.IncomingScreenV8
 import com.example.smsapp.ui.incoming.v9.IncomingScreenV9
+<<<<<<< HEAD
 import com.example.smsapp.ui.incoming.v10.IncomingScreenV10
 import android.net.Uri
+=======
+>>>>>>> 44add2766ff4005ef8fe3e3afbd2915edf269538
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun NavGraphBuilder.incomingListGraph(
@@ -83,7 +88,7 @@ fun NavGraphBuilder.incomingListGraph(
     composable(AppScreen.InboxIncomingV8.route) {
         IncomingScreenV8(
             openDrawer = openDrawer,
-            navigateToThread = { number, name ->
+            navigateToThread = { number: String, name: String ->
                 val n = Uri.encode(number)
                 val t = Uri.encode(name)
                 navController.navigate("incoming_v8_thread?number=$n&name=$t")
@@ -94,10 +99,17 @@ fun NavGraphBuilder.incomingListGraph(
     composable(AppScreen.InboxIncomingV9.route) {
         IncomingScreenV9(
             openDrawer = openDrawer,
+<<<<<<< HEAD
             navigateToThread = { address, threadId ->
                 val a = Uri.encode(address)
                 val t = Uri.encode(threadId)
                 navController.navigate("incoming_v9_thread?address=$a&threadId=$t")
+=======
+            navigateToThread = { number: String, name: String ->
+                val n = Uri.encode(number)
+                val t = Uri.encode(name)
+                navController.navigate("incoming_v9_thread?number=$n&name=$t")
+>>>>>>> 44add2766ff4005ef8fe3e3afbd2915edf269538
             }
         )
     }
@@ -105,12 +117,23 @@ fun NavGraphBuilder.incomingListGraph(
     composable(AppScreen.InboxIncomingV10.route) {
         IncomingScreenV10(
             openDrawer = openDrawer,
+<<<<<<< HEAD
             navigateToThread = { address, threadId ->
                 val a = Uri.encode(address)
                 val t = Uri.encode(threadId)
                 navController.navigate("incoming_v10_thread?address=$a&threadId=$t")
+=======
+            navigateToThread = { number: String, name: String ->
+                val n = Uri.encode(number)
+                val t = Uri.encode(name)
+                navController.navigate("incoming_v10_thread?number=$n&name=$t")
+>>>>>>> 44add2766ff4005ef8fe3e3afbd2915edf269538
             }
         )
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 44add2766ff4005ef8fe3e3afbd2915edf269538

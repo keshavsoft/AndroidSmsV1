@@ -1,16 +1,29 @@
 package com.example.smsapp.ui.outgoing.v10
 
 import android.os.Build
+<<<<<<< HEAD
 import android.widget.Toast
+=======
+>>>>>>> 44add2766ff4005ef8fe3e3afbd2915edf269538
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
+<<<<<<< HEAD
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+=======
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+>>>>>>> 44add2766ff4005ef8fe3e3afbd2915edf269538
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.smsapp.ui.common.SmsPermissionLoader
 import com.example.smsapp.ui.components.AppTopBar
@@ -18,7 +31,15 @@ import com.example.smsapp.ui.outgoing.components.OutgoingTabs
 import com.example.smsapp.viewmodel.InboxViewModel
 import com.example.smsapp.viewmodel.SmsViewModel
 import com.example.smsapp.viewmodel.TimeGroup
+<<<<<<< HEAD
 import kotlinx.coroutines.delay
+=======
+import androidx.compose.runtime.LaunchedEffect
+import kotlinx.coroutines.delay
+import android.widget.Toast
+import androidx.compose.ui.platform.LocalContext
+import com.example.smsapp.ui.outgoing.v7.OutgoingMessageListV7
+>>>>>>> 44add2766ff4005ef8fe3e3afbd2915edf269538
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
@@ -32,10 +53,18 @@ fun OutgoingScreenV10(
 ) {
     val grouped by viewModel.grouped.collectAsState()
     var tab by remember { mutableStateOf(TimeGroup.TODAY) }
+<<<<<<< HEAD
+=======
+    val smsViewModel: SmsViewModel = viewModel()
+>>>>>>> 44add2766ff4005ef8fe3e3afbd2915edf269538
     var tick by remember { mutableStateOf(0) }
     val context = LocalContext.current
 
     SmsPermissionLoader(onGranted = { viewModel.loadOutgoingMessages(it) }) {
+<<<<<<< HEAD
+=======
+        // existing Scaffold here
+>>>>>>> 44add2766ff4005ef8fe3e3afbd2915edf269538
         LaunchedEffect(Unit) {
             while (true) {
                 delay(60000)
@@ -52,6 +81,10 @@ fun OutgoingScreenV10(
                 )
             }
         ) { padding ->
+<<<<<<< HEAD
+=======
+
+>>>>>>> 44add2766ff4005ef8fe3e3afbd2915edf269538
             Column(
                 modifier = Modifier
                     .padding(padding)
@@ -65,7 +98,11 @@ fun OutgoingScreenV10(
                     onSelected = { tab = it }
                 )
 
+<<<<<<< HEAD
                 OutgoingMessageListV10(
+=======
+                OutgoingMessageListV7(
+>>>>>>> 44add2766ff4005ef8fe3e3afbd2915edf269538
                     messages = grouped[tab] ?: emptyList(),
                     tick = tick,
                     onItemClick = { sms ->
@@ -75,10 +112,18 @@ fun OutgoingScreenV10(
                 )
 
                 LaunchedEffect(tick, grouped[tab]) {
+<<<<<<< HEAD
                     if (tick > 0) {
                         Toast.makeText(context, "UI Refreshed V10", Toast.LENGTH_SHORT).show()
                     }
                 }
+=======
+                    Toast.makeText(context, "UI Refreshed", Toast.LENGTH_SHORT).show()
+                }
+
+                tick
+
+>>>>>>> 44add2766ff4005ef8fe3e3afbd2915edf269538
             }
         }
     }

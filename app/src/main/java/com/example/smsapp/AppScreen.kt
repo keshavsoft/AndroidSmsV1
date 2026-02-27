@@ -34,7 +34,10 @@ sealed class AppScreen(
     object OutgoingV5 : AppScreen("outgoing_v5", "Outgoing V5")
     object OutgoingV6 : AppScreen("outgoing_v6", "Outgoing V6")
     object OutgoingV7 : AppScreen("outgoing_v7", "V7")
+<<<<<<< HEAD
     object OutgoingV8 : AppScreen("outgoing_v8", "V8")
+=======
+>>>>>>> 44add2766ff4005ef8fe3e3afbd2915edf269538
     object OutgoingV9 : AppScreen("outgoing_v9", "V9")
     object OutgoingV10 : AppScreen("outgoing_v10", "V10")
 
@@ -56,18 +59,27 @@ sealed class AppScreen(
 
                 DrawerSection(
                     title = "Incoming",
+<<<<<<< HEAD
                     children = listOf(
                         InboxIncomingV1, InboxIncomingV2, InboxIncomingV3, InboxIncomingV4,
                         InboxIncomingV5, InboxIncomingV6, InboxIncomingV7, InboxIncomingV8,
                         InboxIncomingV9, InboxIncomingV10
                     )
+=======
+                    children = listOf(InboxIncomingV1, InboxIncomingV2, InboxIncomingV3, InboxIncomingV4,
+                        InboxIncomingV5, InboxIncomingV6,InboxIncomingV7,InboxIncomingV8, InboxIncomingV9, InboxIncomingV10)
+>>>>>>> 44add2766ff4005ef8fe3e3afbd2915edf269538
                 ),
                 // outgoing section
                 DrawerSection(
                     title = "Outgoing",
                     children = listOf(
                         OutgoingV1, OutgoingV2, OutgoingV3, OutgoingV4, OutgoingV5,
+<<<<<<< HEAD
                         OutgoingV6, OutgoingV7, OutgoingV8, OutgoingV9, OutgoingV10
+=======
+                        OutgoingV6,OutgoingV7, OutgoingV9, OutgoingV10
+>>>>>>> 44add2766ff4005ef8fe3e3afbd2915edf269538
                     )
                 )
             )
