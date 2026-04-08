@@ -1,4 +1,3 @@
 package com.example.smsapp.ui.groupSender.model
 
-class Message {
-}
+data class Message(val id: String, val body: String, val address: String)

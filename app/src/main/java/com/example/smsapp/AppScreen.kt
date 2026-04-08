@@ -27,6 +27,8 @@ sealed class AppScreen(
     object OutgoingV6 : AppScreen("outgoing_v6", "Outgoing V6")
     object OutgoingV7 : AppScreen("outgoing_v7", "V7")
 
+    object GroupSenderV1 : AppScreen("group_sender_v1", "Group Sender V1")
+
     companion object {
 
         // Grouped drawer structure
@@ -54,7 +56,8 @@ sealed class AppScreen(
                         OutgoingV1, OutgoingV2, OutgoingV3, OutgoingV4, OutgoingV5,
                         OutgoingV6,OutgoingV7
                     )
-                )
+                ),
+                DrawerSection("Group Sender", listOf(GroupSenderV1))
             )
     }
 }
