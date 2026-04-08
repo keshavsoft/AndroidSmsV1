@@ -15,12 +15,6 @@ sealed class AppScreen(
     object InboxV2 : AppScreen("inbox_v2", "Inbox V2")
 
     // Inbox Screens for Incoming
-    object InboxIncomingV1 : AppScreen("inbox_incoming_v1", "Incoming V1")
-    object InboxIncomingV2 : AppScreen("inbox_incoming_v2", "Incoming V2")
-    object InboxIncomingV3 : AppScreen("inbox_incoming_v3", "Incoming V3")
-    object InboxIncomingV4 : AppScreen("inbox_incoming_v4", "Incoming V4")
-    object InboxIncomingV5 : AppScreen("inbox_incoming_v5", "Incoming V5")
-    object InboxIncomingV6 : AppScreen("inbox_incoming_v6", "Incoming V6")
     object InboxIncomingV7 : AppScreen("inbox_incoming_v7", "V7")
     object InboxIncomingV8 : AppScreen("inbox_incoming_v8", "V8")
 
@@ -51,8 +45,7 @@ sealed class AppScreen(
 
                 DrawerSection(
                     title = "Incoming",
-                    children = listOf(InboxIncomingV1, InboxIncomingV2, InboxIncomingV3, InboxIncomingV4,
-                        InboxIncomingV5, InboxIncomingV6,InboxIncomingV7,InboxIncomingV8)
+                    children = listOf(InboxIncomingV7,InboxIncomingV8)
                 ),
 // outgoing section//
                 DrawerSection(
