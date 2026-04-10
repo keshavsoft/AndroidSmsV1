@@ -9,6 +9,7 @@ import com.example.smsapp.AppScreen
 import com.example.smsapp.ui.groupSender.v1.GroupSenderScreenV1
 import com.example.smsapp.ui.groupSender.v2.GroupSenderScreenV2
 import com.example.smsapp.ui.groupSender.v3.GroupSenderScreenV3
+import com.example.smsapp.ui.groupSender.v4.GroupSenderScreenV4
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun NavGraphBuilder.groupSenderListGraph(
@@ -27,4 +28,7 @@ fun NavGraphBuilder.groupSenderListGraph(
         GroupSenderScreenV3(openDrawer = openDrawer)
     }
 
+    composable(AppScreen.GroupSenderV4.route) {
+        GroupSenderScreenV4(openDrawer = openDrawer)
+    }
 }

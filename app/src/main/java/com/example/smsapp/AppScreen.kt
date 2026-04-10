@@ -30,6 +30,7 @@ sealed class AppScreen(
     object GroupSenderV1 : AppScreen("group_sender_v1", "Group Sender V1")
     object GroupSenderV2 : AppScreen("group_sender_v2", "Group Sender V2")
     object GroupSenderV3 : AppScreen("group_sender_v3", "Group Sender V3")
+    object GroupSenderV4 : AppScreen("group_sender_v4", "Group Sender V4")
 
     companion object {
 
@@ -60,7 +61,7 @@ sealed class AppScreen(
                     )
                 ),
                 DrawerSection("Group Sender", listOf(GroupSenderV1, GroupSenderV2,
-                    GroupSenderV3))
+                    GroupSenderV3, GroupSenderV4))
             )
     }
 }

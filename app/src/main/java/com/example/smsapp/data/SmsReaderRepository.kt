@@ -40,7 +40,8 @@ class SmsReaderRepository(private val context: Context) {
                     SmsMessage(
                         address = address,
                         body = body,
-                        date = formattedDate
+                        date = formattedDate,
+                        type = 1
                     )
                 )
             }
@@ -103,6 +104,7 @@ class SmsReaderRepository(private val context: Context) {
             val addressIndex = it.getColumnIndex(Telephony.Sms.ADDRESS)
             val bodyIndex = it.getColumnIndex(Telephony.Sms.BODY)
             val dateIndex = it.getColumnIndex(Telephony.Sms.DATE)
+            val typeIndex = it.getColumnIndex(Telephony.Sms.TYPE)
 
             while (it.moveToNext()) {
                 val address = it.getString(addressIndex)
@@ -115,7 +117,7 @@ class SmsReaderRepository(private val context: Context) {
                 ).format(Date(dateMillis))
 
                 smsList.add(
-                    SmsMessage(address, body, formattedDate)
+                    SmsMessage(address, body, formattedDate, typeIndex)
                 )
             }
         }

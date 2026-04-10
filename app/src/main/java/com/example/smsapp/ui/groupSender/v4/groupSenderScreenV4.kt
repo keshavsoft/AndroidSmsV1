@@ -24,9 +24,9 @@ import com.example.smsapp.ui.components.AppTopBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GroupSenderScreenV3(
+fun GroupSenderScreenV4(
     openDrawer: () -> Unit,
-    inHeadLabel: String = "Group Sender V3",
+    inHeadLabel: String = "Group Sender V4",
     vm: GroupSenderViewModel = viewModel()
 ) {
 
@@ -62,9 +62,14 @@ fun GroupSenderScreenV3(
                     items(msgs) { msg ->
                         Row(
                             modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.Start
+                            horizontalArrangement = if (msg.type == 1) Arrangement.Start else Arrangement.End
                         ) {
-                            Text(msg.body)
+                            Text(
+                                msg.body,
+                                modifier = Modifier
+                                    .padding(8.dp)
+                                    .fillMaxWidth(0.7f)
+                            )
                         }
                     }
                 }
@@ -118,7 +123,7 @@ fun GroupSenderScreenV3(
 
 @androidx.compose.ui.tooling.preview.Preview(showBackground = true)
 @Composable
-fun PreviewGroupSenderScreenV3() {
+fun PreviewGroupSenderScreenV4() {
 
     val fakeData = mapOf(
         "Amazon" to 25,
@@ -133,7 +138,7 @@ fun PreviewGroupSenderScreenV3() {
         }
     }
 
-    GroupSenderScreenV3(
+    GroupSenderScreenV4(
         openDrawer = {},
         vm = fakeVm
     )
