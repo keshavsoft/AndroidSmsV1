@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import com.example.smsapp.AppScreen
 import com.example.smsapp.ui.groupSender.v1.GroupSenderScreenV1
 import com.example.smsapp.ui.groupSender.v2.GroupSenderScreenV2
+import com.example.smsapp.ui.groupSender.v3.GroupSenderScreenV3
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun NavGraphBuilder.groupSenderListGraph(
@@ -20,6 +21,10 @@ fun NavGraphBuilder.groupSenderListGraph(
 
     composable(AppScreen.GroupSenderV2.route) {
         GroupSenderScreenV2(openDrawer = openDrawer)
+    }
+
+    composable(AppScreen.GroupSenderV3.route) {
+        GroupSenderScreenV3(openDrawer = openDrawer)
     }
 
 }

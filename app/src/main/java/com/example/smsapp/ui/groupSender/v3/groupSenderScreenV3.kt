@@ -1,7 +1,8 @@
-package com.example.smsapp.ui.groupSender.v2
+package com.example.smsapp.ui.groupSender.v3
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -21,9 +22,9 @@ import com.example.smsapp.ui.components.AppTopBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GroupSenderScreenV2(
+fun GroupSenderScreenV3(
     openDrawer: () -> Unit,
-    inHeadLabel: String = "Group Sender V2",
+    inHeadLabel: String = "Group Sender V3",
     vm: GroupSenderViewModel = viewModel()
 ) {
 
@@ -43,15 +44,67 @@ fun GroupSenderScreenV2(
             )
         }
     ) { padding ->
+        val sortedData = data
+            .toList()
+            .sortedByDescending { it.second }
 
         LazyColumn(
             modifier = Modifier.padding(padding),
             contentPadding = PaddingValues(12.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(data.entries.toList()) { (sender, count) ->
-                Text("$sender : $count")
+
+            items(
+                items = sortedData,
+                key = { it.first }
+            ) { item ->
+
+                val sender = item.first
+                val count = item.second
+
+                androidx.compose.material3.Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = { vm.onSenderClick(sender) }
+                ) {
+                    androidx.compose.foundation.layout.Row(
+                        modifier = Modifier.fillMaxWidth().padding(16.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = sender,
+                            style = androidx.compose.material3.MaterialTheme.typography.titleMedium
+                        )
+
+                        Text(
+                            text = count.toString(),
+                            style = androidx.compose.material3.MaterialTheme.typography.labelLarge
+                        )
+                    }
+                }
             }
         }
     }
+}
+
+@androidx.compose.ui.tooling.preview.Preview(showBackground = true)
+@Composable
+fun PreviewGroupSenderScreenV3() {
+
+    val fakeData = mapOf(
+        "Amazon" to 25,
+        "Bank OTP" to 12,
+        "Flipkart" to 8,
+        "Jio" to 3
+    )
+
+    val fakeVm = object : GroupSenderViewModel() {
+        init {
+            grouped.value = fakeData
+        }
+    }
+
+    GroupSenderScreenV3(
+        openDrawer = {},
+        vm = fakeVm
+    )
 }

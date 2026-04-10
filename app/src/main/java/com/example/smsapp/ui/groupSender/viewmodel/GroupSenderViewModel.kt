@@ -5,12 +5,18 @@ import androidx.lifecycle.ViewModel
 import com.example.smsapp.data.SmsReaderRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 
-class GroupSenderViewModel : ViewModel() {
+open class GroupSenderViewModel : ViewModel() {
     val grouped = MutableStateFlow<Map<String, Int>>(emptyMap())
+    private val _selectedSender = MutableStateFlow<String?>(null)
+    val selectedSender = _selectedSender
 
     fun load(context: Context) {
         val msgs = SmsReaderRepository(context).getInboxMessages()
         grouped.value = msgs.groupBy { it.address }
             .mapValues { it.value.size }
+    }
+
+    fun onSenderClick(sender: String) {
+        _selectedSender.value = sender
     }
 }
