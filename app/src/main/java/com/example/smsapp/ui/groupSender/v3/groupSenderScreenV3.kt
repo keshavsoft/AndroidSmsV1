@@ -1,7 +1,9 @@
 package com.example.smsapp.ui.groupSender.v3
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -44,6 +46,33 @@ fun GroupSenderScreenV3(
             )
         }
     ) { padding ->
+        val selected by vm.selectedSender.collectAsState()
+
+        if (selected != null) {
+            val msgs by vm.messagesForSender.collectAsState()
+
+            LaunchedEffect(selected) {
+                vm.loadMessagesForSender(context, selected!!)
+            }
+
+            Column {
+                Text("Conversation: $selected")
+
+                LazyColumn {
+                    items(msgs) { msg ->
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Start
+                        ) {
+                            Text(msg.body)
+                        }
+                    }
+                }
+            }
+        } else {
+            // 👉 YOUR OLD LazyColumn (sender list) goes here
+
+
         val sortedData = data
             .toList()
             .sortedByDescending { it.second }
@@ -82,6 +111,7 @@ fun GroupSenderScreenV3(
                     }
                 }
             }
+        }
         }
     }
 }
